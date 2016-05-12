@@ -36,9 +36,9 @@ view model =
     ]
 ```
 
-You can paste the code into Elm's online editor to see it in action.
+You can paste the code into [Elm's online editor](http://elm-lang.org/try) to see it in action.
 
-From there, install Elm on your machine and, assuming you've copied the example into a file Counter.elm in an empty directory, run the following commands inside that directory:
+From there, [install Elm on your machine](http://elm-lang.org/install) and, assuming you've copied the example into a file Counter.elm in an empty directory, run the following commands inside that directory:
 
 ```bash
 # Create an elm-package.json file and install the required packages
