@@ -245,9 +245,9 @@ p =
 {-| Represents a thematic break between paragraphs of a section or article or
 any longer content.
 -}
-hr : List (Attribute msg) -> List (Html msg) -> Html msg
-hr =
-  node "hr"
+hr : List (Attribute msg) -> Html msg
+hr attributes =
+  node "hr" attributes []
 
 
 {-| Indicates that its content is preformatted and that this format must be
@@ -519,17 +519,17 @@ span =
 
 
 {-| Represents a line break. -}
-br : List (Attribute msg) -> List (Html msg) -> Html msg
-br =
-  node "br"
+br : List (Attribute msg) -> Html msg
+br attributes =
+  node "br" attributes []
 
 
 {-| Represents a line break opportunity, that is a suggested point for
 wrapping text in order to improve readability of text split on several lines.
 -}
-wbr : List (Attribute msg) -> List (Html msg) -> Html msg
-wbr =
-  node "wbr"
+wbr : List (Attribute msg) -> Html msg
+wbr attributes =
+  node "wbr" attributes []
 
 
 -- EDITS
@@ -549,9 +549,9 @@ del =
 -- EMBEDDED CONTENT
 
 {-| Represents an image. -}
-img : List (Attribute msg) -> List (Html msg) -> Html msg
-img =
-  node "img"
+img : List (Attribute msg) -> Html msg
+img attributes =
+  node "img" attributes []
 
 
 {-| Embedded an HTML document. -}
@@ -563,9 +563,9 @@ iframe =
 {-| Represents a integration point for an external, often non-HTML,
 application or interactive content.
 -}
-embed : List (Attribute msg) -> List (Html msg) -> Html msg
-embed =
-  node "embed"
+embed : List (Attribute msg) -> Html msg
+embed attributes =
+  node "embed" attributes []
 
 
 {-| Represents an external resource, which is treated as an image, an HTML
@@ -577,9 +577,9 @@ object =
 
 
 {-| Defines parameters for use by plug-ins invoked by `object` elements. -}
-param : List (Attribute msg) -> List (Html msg) -> Html msg
-param =
-  node "param"
+param : List (Attribute msg) -> Html msg
+param attributes =
+  node "param" attributes []
 
 
 {-| Represents a video, the associated audio and captions, and controls. -}
@@ -597,17 +597,17 @@ audio =
 {-| Allows authors to specify alternative media resources for media elements
 like `video` or `audio`.
 -}
-source : List (Attribute msg) -> List (Html msg) -> Html msg
-source =
-  node "source"
+source : List (Attribute msg) -> Html msg
+source attributes =
+  node "source" attributes []
 
 
 {-| Allows authors to specify timed text track for media elements like `video`
 or `audio`.
 -}
-track : List (Attribute msg) -> List (Html msg) -> Html msg
-track =
-  node "track"
+track : List (Attribute msg) -> Html msg
+track attributes =
+  node "track" attributes []
 
 
 {-| Represents a bitmap area for graphics rendering. -}
@@ -625,9 +625,9 @@ node "map"
 
 
 {-| In conjunction with `map`, defines an image map. -}
-area : List (Attribute msg) -> List (Html msg) -> Html msg
-area =
-node "area"
+area : List (Attribute msg) -> Html msg
+area attributes =
+node "area" attributes []
 
 --}
 
@@ -664,9 +664,9 @@ colgroup =
 
 
 {-| Represents a column of a table. -}
-col : List (Attribute msg) -> List (Html msg) -> Html msg
-col =
-  node "col"
+col : List (Attribute msg) -> Html msg
+col attributes =
+  node "col" attributes []
 
 
 {-| Represents the block of rows that describes the concrete data of a table.
@@ -737,9 +737,9 @@ label =
 
 
 {-| Represents a typed data field allowing the user to edit the data. -}
-input : List (Attribute msg) -> List (Html msg) -> Html msg
-input =
-  node "input"
+input : List (Attribute msg) -> Html msg
+input attributes =
+  node "input" attributes []
 
 
 {-| Represents a button. -}
@@ -781,9 +781,9 @@ textarea =
 
 
 {-| Represents a key-pair generator control. -}
-keygen : List (Attribute msg) -> List (Html msg) -> Html msg
-keygen =
-  node "keygen"
+keygen : List (Attribute msg) -> Html msg
+keygen attributes =
+  node "keygen" attributes []
 
 
 {-| Represents the result of a calculation. -}
