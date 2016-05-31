@@ -265,7 +265,7 @@ accesskey char =
 {-| Indicates whether the element's content is editable. -}
 contenteditable : Bool -> Attribute msg
 contenteditable bool =
-  boolProperty "contentEditable" bool
+  attribute "contentEditable" (toString bool)
 
 
 {-| Defines the ID of a `menu` element which will serve as the element's
@@ -319,7 +319,7 @@ instead.
 -}
 tabindex : Int -> Attribute msg
 tabindex n =
-  stringProperty "tabIndex" (toString n)
+  attribute "tabIndex" (toString n)
 
 
 
