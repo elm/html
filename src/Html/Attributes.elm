@@ -2,7 +2,7 @@ module Html.Attributes exposing
   ( style
   , class, classList, id, title, hidden
   , type', value, defaultValue, checked, placeholder, selected
-  , accept, acceptCharset, action, autocomplete, autofocus, autosave
+  , accept, acceptCharset, action, autocomplete, autofocus
   , disabled, enctype, formaction, list, maxlength, minlength, method, multiple
   , name, novalidate, pattern, readonly, required, size, for, form
   , max, min, step
@@ -39,7 +39,7 @@ Attributes](#custom-attributes) section to learn how to create new helpers.
 @docs type', value, defaultValue, checked, placeholder, selected
 
 ## Input Helpers
-@docs accept, acceptCharset, action, autocomplete, autofocus, autosave,
+@docs accept, acceptCharset, action, autocomplete, autofocus,
     disabled, enctype, formaction, list, maxlength, minlength, method, multiple,
     name, novalidate, pattern, readonly, required, size, for, form
 
@@ -602,16 +602,6 @@ For `button`, `input`, `keygen`, `select`, and `textarea`.
 autofocus : Bool -> Attribute msg
 autofocus bool =
   boolProperty "autofocus" bool
-
-
-{-| Previous entries into an `input` will be persisted across page loads,
-associated with a unique ID. The previous entries will be displayed as
-suggestions when the user types into an `input` that has an autosave attribute
-with the same unique ID.
--}
-autosave : String -> Attribute msg
-autosave value =
-  stringProperty "autosave" value
 
 
 {-| Indicates whether the user can interact with a `button`, `fieldset`,
