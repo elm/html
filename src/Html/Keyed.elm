@@ -2,6 +2,7 @@ module Html.Keyed exposing
   ( node
   , ol
   , ul
+  , tbody
   )
 {-| A keyed node helps optimize cases where children are getting added, moved,
 removed, etc. Common examples include:
@@ -18,7 +19,7 @@ efficiently.
 @docs node
 
 # Commonly Keyed Nodes
-@docs ol, ul
+@docs ol, ul, tbody
 -}
 
 
@@ -46,3 +47,9 @@ ol =
 ul : List (Attribute msg) -> List ( String, Html msg ) -> Html msg
 ul =
   node "ul"
+
+
+{-|-}
+tbody : List (Attribute msg) -> List ( String, Html msg ) -> Html msg
+tbody =
+  node "tbody"
