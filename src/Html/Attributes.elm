@@ -1,7 +1,7 @@
 module Html.Attributes exposing
   ( style
   , class, classList, id, title, hidden
-  , type', value, defaultValue, checked, placeholder, selected
+  , type', value, defaultValue, checked, indeterminate, placeholder, selected
   , accept, acceptCharset, action, autocomplete, autofocus, autosave
   , disabled, enctype, formaction, list, maxlength, minlength, method, multiple
   , name, novalidate, pattern, readonly, required, size, for, form
@@ -547,6 +547,10 @@ checked : Bool -> Attribute msg
 checked bool =
   boolProperty "checked" bool
 
+{-| Indicates whether an `input` of type checkbox is indeterminate. -}
+indeterminate : Bool -> Attribute msg
+indeterminate bool =
+  boolProperty "indeterminate" bool
 
 {-| Provides a hint to the user of what can be entered into an `input` or
 `textarea`.
