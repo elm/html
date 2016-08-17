@@ -3,7 +3,7 @@ module Html.Events exposing
   , onMouseDown, onMouseUp
   , onMouseEnter, onMouseLeave
   , onMouseOver, onMouseOut
-  , onInput, onCheck, onSubmit
+  , onInput, onChange, onCheck, onSubmit
   , onBlur, onFocus
   , on, onWithOptions, Options, defaultOptions
   , targetValue, targetChecked, keyCode
@@ -23,7 +23,7 @@ of events as seen in the [TodoMVC][] example.
       onMouseOver, onMouseOut
 
 # Form Helpers
-@docs onInput, onCheck, onSubmit
+@docs onInput, onChange, onCheck, onSubmit
 
 # Focus Helpers
 @docs onBlur, onFocus
@@ -108,6 +108,20 @@ For more details on how `onInput` works, check out [targetValue](#targetValue).
 onInput : (String -> msg) -> Attribute msg
 onInput tagger =
   on "input" (Json.map tagger targetValue)
+
+
+{-| Capture [change](https://developer.mozilla.org/en-US/docs/Web/Events/change)
+events for things like text fields, text areas or select boxes.
+
+It grabs the **string** value at `event.target.value`, so it will not work if
+need some other type of information. For example, if you want to track inputs
+on a range slider, make a custom handler with [`on`](#on).
+
+For more details on how `onChange` works, check out [targetValue](#targetValue).
+-}
+onChange : (Bool -> msg) -> Attribute msg
+onChange tagger =
+  on "change" (Json.map tagger targetValue)
 
 
 {-| Capture [change](https://developer.mozilla.org/en-US/docs/Web/Events/change)
