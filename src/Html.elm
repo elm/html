@@ -15,7 +15,7 @@ module Html exposing
   , ins, del
   , small, cite, dfn, abbr, time, var, samp, kbd, s, q
   , mark, ruby, rt, rp, bdi, bdo, wbr
-  , details, summary, menuitem, menu
+  , details, summary, menuitem, menu, dialog
   )
 
 {-| This file is organized roughly in order of popularity. The tags which you'd
@@ -74,7 +74,7 @@ expect to use frequently will be closer to the top.
 @docs mark, ruby, rt, rp, bdi, bdo, wbr
 
 # Interactive Elements
-@docs details, summary, menuitem, menu
+@docs details, summary, menuitem, menu, dialog
 
 -}
 
@@ -833,3 +833,8 @@ menu : List (Attribute msg) -> List (Html msg) -> Html msg
 menu =
   node "menu"
 
+
+{-| Represents a native modal dialog. -}
+dialog : List (Attribute msg) -> List (Html msg) -> Html msg
+dialog =
+  node "dialog"
