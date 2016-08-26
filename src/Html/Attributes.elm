@@ -4,7 +4,7 @@ module Html.Attributes exposing
   , type', value, defaultValue, checked, placeholder, selected
   , accept, acceptCharset, action, autocomplete, autofocus, autosave
   , disabled, enctype, formaction, list, maxlength, minlength, method, multiple
-  , name, novalidate, pattern, readonly, required, size, for, form
+  , name, novalidate, pattern, readonly, required, size, for, form, inputmode
   , max, min, step
   , cols, rows, wrap
   , href, target, download, downloadAs, hreflang, media, ping, rel
@@ -41,7 +41,7 @@ Attributes](#custom-attributes) section to learn how to create new helpers.
 ## Input Helpers
 @docs accept, acceptCharset, action, autocomplete, autofocus, autosave,
     disabled, enctype, formaction, list, maxlength, minlength, method, multiple,
-    name, novalidate, pattern, readonly, required, size, for, form
+    name, novalidate, pattern, readonly, required, size, for, form, inputmode
 
 ## Input Ranges
 @docs max, min, step
@@ -744,6 +744,95 @@ for value =
 form : String -> Attribute msg
 form value =
   attribute "form" value
+
+
+{-| A hint to the browser for which keyboard to display.
+This attribute applies when the value of the `type` attribute is `text`, `password`, `email`, or `url.
+-}
+form : String -> Attribute msg
+form value =
+  attribute "inputmode" value
+
+
+{-| Alphanumeric, non-prose content such as usernames and passwords.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "verbatim" value
+
+
+{-| Latin-script input in the user's preferred language with typing aids such as text prediction enabled.
+For human-to-computer communication such as search boxes.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "latin" value
+
+
+{-| As _latin_, but for human names.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "latinName" value
+
+
+{-| As _latin_, but with more aggressive typing aids. For human-to-human communication such as instant messaging or email.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "latinProse" value
+
+
+{-| As latin-prose, but for the user's secondary languages.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "fullWidthLatin" value
+
+
+{-| Kana or romaji input, typically hiragana input, using full-width characters, with support for converting to kanji.
+Intended for Japanese text input.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "kana" value
+
+
+{-| Katakana input, using full-width characters, with support for converting to kanji. Intended for Japanese text input.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "katakana" value
+
+
+{-| Numeric input, including keys for the digits 0 to 9, the user's preferred thousands separator character,
+and the character for indicating negative numbers. Intended for numeric codes, e.g. credit card numbers.
+For actual numbers, prefer using `<input type="number">`
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "numeric" value
+
+
+{-| Telephone input, including asterisk and pound key. Use `<input type="tel">` if possible instead.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "tel" value
+
+
+{-| Email input. Use `<input type="email">` if possible instead.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "email" value
+
+
+{-| URL input. Use `<input type="url">` if possible instead.
+-}
+max : String -> Attribute msg
+max value =
+  stringProperty "url" value
 
 
 
