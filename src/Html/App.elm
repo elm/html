@@ -27,7 +27,7 @@ show on screen. The following functions help you define `main`, so your first
 Elm program will likely contain a definition like:
 
     main =
-      Html.beginnerProgram
+      Html.App.beginnerProgram
         { model = model
         , view = view
         , update = update
