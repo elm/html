@@ -621,13 +621,13 @@ canvas =
 {-| In conjunction with `area`, defines an image map. -}
 map : List (Attribute msg) -> List (Html msg) -> Html msg
 map =
-node "map"
+  node "map"
 
 
 {-| In conjunction with `map`, defines an image map. -}
 area : List (Attribute msg) -> List (Html msg) -> Html msg
 area =
-node "area"
+  node "area"
 
 --}
 
