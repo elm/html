@@ -631,12 +631,6 @@ node "area"
 
 --}
 
-{-| Defines an embedded vectorial image. -}
-svg : List (Attribute msg) -> List (Html msg) -> Html msg
-svg =
-  node "svg"
-
-
 {-| Defines a mathematical formula. -}
 math : List (Attribute msg) -> List (Html msg) -> Html msg
 math =
@@ -832,4 +826,3 @@ menuitem =
 menu : List (Attribute msg) -> List (Html msg) -> Html msg
 menu =
   node "menu"
-
