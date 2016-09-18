@@ -5,6 +5,7 @@ module Html.Events exposing
   , onMouseOver, onMouseOut
   , onInput, onCheck, onSubmit
   , onBlur, onFocus
+  , onTouchStart, onTouchMove, onTouchCancel, onTouchEnd
   , on, onWithOptions, Options, defaultOptions
   , targetValue, targetChecked, keyCode
   )
@@ -27,6 +28,9 @@ of events as seen in the [TodoMVC][] example.
 
 # Focus Helpers
 @docs onBlur, onFocus
+
+# Touch Helpers
+@docs onTouchStart, onTouchMove, onTouchCancel, onTouchEnd
 
 # Custom Event Handlers
 @docs on, onWithOptions, Options, defaultOptions
@@ -151,6 +155,32 @@ onFocus : msg -> Attribute msg
 onFocus msg =
   on "focus" (Json.succeed msg)
 
+
+-- TOUCH EVENTS
+
+
+{-|-}
+onTouchStart : msg -> Attribute msg
+onTouchStart msg =
+  on "touchstart" (Json.succeed msg)
+
+
+{-|-}
+onTouchEnd : msg -> Attribute msg
+onTouchEnd msg =
+  on "touchend" (Json.succeed msg)
+
+
+{-|-}
+onTouchCancel : msg -> Attribute msg
+onTouchCancel msg =
+  on "touchcancel" (Json.succeed msg)
+
+
+{-|-}
+onTouchMove : msg -> Attribute msg
+onTouchMove msg =
+  on "touchmove" (Json.succeed msg)
 
 
 -- CUSTOM EVENTS
