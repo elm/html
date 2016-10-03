@@ -166,6 +166,23 @@ var app = Elm.MyApp.fullscreen({
     token: '12345'
 });
 ```
+
+These flags are then passed to the init function, making it easy to initialise
+your app with data from outside of it:
+
+```elm
+main : Progam { userID : String, token :  String }
+main = programWithFlags
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = always Sub.none
+    }
+
+init : { userID : String, token : String } -> (Model, Cmd Msg)
+init flags =
+    { userID = flags.userID, token = flags.token } ! []
+```
 -}
 programWithFlags
   : { init : flags -> (model, Cmd msg)
