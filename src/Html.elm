@@ -774,7 +774,9 @@ option =
   node "option"
 
 
-{-| Represents a multiline text edit control. -}
+{-| Represents a multiline text edit control. NOTE: to set contents of a dynamic
+`textarea` use the `value` attribute instead of adding child elements to the `textarea`. 
+-}
 textarea : List (Attribute msg) -> List (Html msg) -> Html msg
 textarea =
   node "textarea"
