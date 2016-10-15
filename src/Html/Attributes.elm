@@ -517,7 +517,7 @@ srcdoc value =
 -- INPUT
 
 
-{-| Defines the type of a `button`, `input`, `embed`, `object`, `script`,
+{-| Defines the type of a `text`, `button`, `input`, `embed`, `object`, `script`,
 `source`, `style`, or `menu`.
 -}
 type' : String -> Attribute msg
