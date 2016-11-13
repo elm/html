@@ -127,17 +127,17 @@ style =
 Each class can easily be added and removed depending on the boolean value it
 is paired with.
 
-    renderMessage : Msg -> Html
-    renderMessage msg =
+    renderNotice : Notice -> Html msg
+    renderNotice notice =
       div
         [
           classList [
             ("message", True),
-            ("message-important", msg.isImportant),
-            ("message-read", msg.isRead)
+            ("message-important", notice.isImportant),
+            ("message-read", notice.isRead)
           ]
         ]
-        [ text msg.content ]
+        [ text notice.content ]
 -}
 classList : List (String, Bool) -> Attribute msg
 classList list =
