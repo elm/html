@@ -11,7 +11,7 @@ module Html exposing
   , section, nav, article, aside, header, footer, address, main_, body
   , figure, figcaption
   , table, caption, colgroup, col, tbody, thead, tfoot, tr, td, th
-  , fieldset, legend, label, datalist, optgroup, keygen, output, progress, meter
+  , fieldset, legend, label, datalist, optgroup, output, progress, meter
   , audio, video, source, track
   , embed, object, param
   , ins, del
@@ -62,7 +62,7 @@ expect to use frequently will be closer to the top.
 ## Less Common Elements
 
 ### Less Common Inputs
-@docs fieldset, legend, label, datalist, optgroup, keygen, output, progress, meter
+@docs fieldset, legend, label, datalist, optgroup, output, progress, meter
 
 ### Audio and Video
 @docs audio, video, source, track
@@ -866,12 +866,6 @@ option =
 textarea : List (Attribute msg) -> List (Html msg) -> Html msg
 textarea =
   node "textarea"
-
-
-{-| Represents a key-pair generator control. -}
-keygen : List (Attribute msg) -> List (Html msg) -> Html msg
-keygen =
-  node "keygen"
 
 
 {-| Represents the result of a calculation. -}
