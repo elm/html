@@ -262,9 +262,9 @@ dir value =
 
 
 {-| Defines whether the element can be dragged. -}
-draggable : String -> Attribute msg
+draggable : Bool -> Attribute msg
 draggable value =
-  attribute "draggable" value
+  attribute "draggable" <| if value then "true" else "false"
 
 
 {-| Indicates that the element accept the dropping of content on it. -}
