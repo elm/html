@@ -4,7 +4,7 @@ module Html.Attributes exposing
   , type_, value, defaultValue, checked, placeholder, selected
   , accept, acceptCharset, action, autocomplete, autofocus
   , disabled, enctype, formaction, list, maxlength, minlength, method, multiple
-  , name, novalidate, pattern, readonly, required, size, for, form
+  , name, novalidate, pattern, readonly, required, size, for, form, inputmode
   , max, min, step
   , cols, rows, wrap
   , href, target, download, downloadAs, hreflang, media, ping, rel
@@ -37,7 +37,7 @@ just search the page for `video` if you want video stuff.
 ## Input Helpers
 @docs accept, acceptCharset, action, autocomplete, autofocus,
     disabled, enctype, formaction, list, maxlength, minlength, method, multiple,
-    name, novalidate, pattern, readonly, required, size, for, form
+    name, novalidate, pattern, readonly, required, size, for, form, inputmode
 
 ## Input Ranges
 @docs max, min, step
@@ -711,6 +711,14 @@ for value =
 form : String -> Attribute msg
 form value =
   attribute "form" value
+
+
+{-| A hint to the browser for which keyboard to display.
+This attribute applies when the value of the `type` attribute is `text`, `password`, `email`, or `url.
+-}
+inputmode : String -> Attribute msg
+inputmode value =
+  attribute "inputMode" value
 
 
 
