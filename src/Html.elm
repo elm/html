@@ -1,6 +1,6 @@
 module Html exposing
   ( Html, Attribute
-  , text, node, map
+  , none, text, node, map
   , beginnerProgram, program, programWithFlags
   , h1, h2, h3, h4, h5, h6
   , div, p, hr, pre, blockquote
@@ -24,7 +24,7 @@ module Html exposing
 expect to use frequently will be closer to the top.
 
 # Primitives
-@docs Html, Attribute, text, node, map
+@docs Html, Attribute, none, text, node, map
 
 # Programs
 @docs beginnerProgram, program, programWithFlags
@@ -135,7 +135,19 @@ text : String -> Html msg
 text =
   VirtualDom.text
 
+{-| Create an empty node. It is used when you have to return Html and you don't
+want to.
 
+    viewTitle : Maybe String -> Html msg
+    viewTitle title =
+      case title of
+        Nothing -> none
+        Just title_ -> h1 title_
+
+-}
+none : Html msg
+none =
+  text ""
 
 -- NESTING VIEWS
 
