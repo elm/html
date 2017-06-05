@@ -137,6 +137,23 @@ text =
 
 
 
+-- CONDITIONAL RENDERING
+
+{-| Useful for rendering nothing when you have something you want to render
+conditionally. This is equivalent to using `Html.text ""`
+
+    view : Bool -> Html Msg
+    view bool =
+      if bool then
+        Html.div [] [ Html.text "It's True!" ]
+      else
+        Html.none
+
+-}
+none : Html msg
+none = VirtualDom.text ""
+
+
 -- NESTING VIEWS
 
 
