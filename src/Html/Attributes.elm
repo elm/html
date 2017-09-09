@@ -102,7 +102,7 @@ import VirtualDom
     myStyle : Attribute msg
     myStyle =
       style
-        [ ("backgroundColor", "red")
+        [ ("background-color", "red")
         , ("height", "90px")
         , ("width", "100%")
         ]
