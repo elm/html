@@ -768,7 +768,7 @@ wrap value =
 -- MAPS
 
 
-{-| When an `img` is a descendent of an `a` tag, the `ismap` attribute
+{-| When an `img` is a descendant of an `a` tag, the `ismap` attribute
 indicates that the click location should be added to the parent `a`'s href as
 a query string.
 -}
