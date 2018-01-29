@@ -19,6 +19,7 @@ module Html.Attributes exposing
   , itemprop, lang, spellcheck, tabindex
   , challenge, keytype
   , cite, datetime, pubdate, manifest
+  , role
   )
 
 {-| Helper functions for HTML attributes. They are organized roughly by
@@ -81,6 +82,9 @@ Attributes that can be attached to any HTML tag but are less commonly used.
 
 # Miscellaneous
 @docs cite, datetime, pubdate, manifest
+
+# Accessibility
+@docs role
 
 -}
 
@@ -996,6 +1000,14 @@ scope value =
 manifest : String -> Attribute msg
 manifest value =
   attribute "manifest" value
+
+
+-- ACCESSIBILITY
+
+
+role : String -> Attribute msg
+role value =
+  stringProperty "role" value
 
 
 {-- TODO: maybe reintroduce once there's a better way to disambiguate imports
