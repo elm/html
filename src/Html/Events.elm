@@ -23,7 +23,7 @@ of events as seen in the [TodoMVC][] example.
       onMouseOver, onMouseOut
 
 # Form Helpers
-@docs onInput, onCheck, onSubmit
+@docs onInput, onChangeValue, onCheck, onSubmit
 
 # Focus Helpers
 @docs onBlur, onFocus
@@ -108,6 +108,17 @@ For more details on how `onInput` works, check out [`targetValue`](#targetValue)
 onInput : (String -> msg) -> Attribute msg
 onInput tagger =
   on "input" (Json.map tagger targetValue)
+
+
+{-| Detect [change](https://developer.mozilla.org/en-US/docs/Web/Events/change)
+events on file inputs. It will grab the file name value from `event.target.value`
+on any input event.
+
+Check out [`targetValue`](#targetValue) for more details on how this works.
+-}
+onChangeValue : (String -> msg) -> Attribute msg
+onChangeValue tagger =
+  on "change" (Json.map tagger targetValue)
 
 
 {-| Detect [change](https://developer.mozilla.org/en-US/docs/Web/Events/change)
