@@ -23,7 +23,7 @@ of events as seen in the [TodoMVC][] example.
       onMouseOver, onMouseOut
 
 # Form Helpers
-@docs onInput, onChange, onCheck, onSubmit
+@docs onInput, onChangeValue, onCheck, onSubmit
 
 # Focus Helpers
 @docs onBlur, onFocus
