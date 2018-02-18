@@ -17,7 +17,7 @@ view : Int -> Html Msg
 view count =
   div []
     [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (String.fromInt count) ]
+    , div [] [ text (toString count) ]
     , button [ onClick Increment ] [ text "+" ]
     ]
 ```
