@@ -118,6 +118,8 @@ functions in this library.
 
 You can use this to create custom nodes if you need to create something that
 is not covered by the helper functions in this library.
+
+`script` nodes are transformed to `p` nodes as they are a possible XSS attack vector.
 -}
 node : String -> List (Attribute msg) -> List (Html msg) -> Html msg
 node =
