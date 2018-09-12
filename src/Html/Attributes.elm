@@ -5,6 +5,7 @@ module Html.Attributes exposing
   , accept, acceptCharset, action, autocomplete, autofocus
   , disabled, enctype, list, maxlength, minlength, method, multiple
   , name, novalidate, pattern, readonly, required, size, for, form
+  , webKitDirectory
   , max, min, step
   , cols, rows, wrap
   , href, target, download, hreflang, media, ping, rel
@@ -560,6 +561,13 @@ email or file. Can also indicate that you can `select` many options.
 multiple : Bool -> Attribute msg
 multiple =
   boolProperty "multiple"
+
+
+{-| Indicates whether directories can be entered in an `input` of type file.
+-}
+webKitDirectory : Bool -> Attribute msg
+webKitDirectory =
+  boolProperty "webkitdirectory"
 
 
 {-| Name of the element. For example used by the server to identify the fields
