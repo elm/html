@@ -10,11 +10,11 @@ module Html.Events exposing
   )
 
 {-|
-It is often helpful to create an [Union Type][] so you can have many different kinds
+It is often helpful to create a [Custom Type][] so you can have many different kinds
 of events as seen in the [TodoMVC][] example.
 
-[Union Type]: https://elm-lang.org/learn/Union-Types.elm
-[TodoMVC]: https://github.com/evancz/elm-todomvc/blob/master/Todo.elm
+[Custom Type]: https://guide.elm-lang.org/types/custom_types.html
+[TodoMVC]: https://github.com/evancz/elm-todomvc/blob/master/src/Main.elm
 
 # Mouse
 @docs onClick, onDoubleClick,
