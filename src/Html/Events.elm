@@ -123,7 +123,7 @@ alwaysStop x =
 
 
 {-| Detect [change](https://developer.mozilla.org/en-US/docs/Web/Events/change)
-events on checkboxes. It will grab the boolean value from `event.target.checked`
+events on checkboxes and radio buttons. It will grab the boolean value from `event.target.checked`
 on any input event.
 
 Check out [`targetChecked`](#targetChecked) for more details on how this works.
