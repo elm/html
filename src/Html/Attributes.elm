@@ -497,6 +497,10 @@ autocomplete bool =
 
 {-| The element should be automatically focused after the page loaded.
 For `button`, `input`, `select`, and `textarea`.
+
+**Note:** This only applies _when the page is loaded_. See
+[`Browser.Dom.focus`](https://package.elm-lang.org/packages/elm/browser/latest/Browser-Dom#focus)
+to focus elements added to the DOM after the page is load.
 -}
 autofocus : Bool -> Attribute msg
 autofocus =
