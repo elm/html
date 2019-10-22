@@ -205,7 +205,8 @@ aside =
   Elm.Kernel.VirtualDom.node "aside"
 
 
-{-|-}
+{-| Defines a heading of maximum importance to the document.
+-}
 h1 : List (Attribute msg) -> List (Html msg) -> Html msg
 h1 =
   Elm.Kernel.VirtualDom.node "h1"
@@ -235,7 +236,8 @@ h5 =
   Elm.Kernel.VirtualDom.node "h5"
 
 
-{-|-}
+{-| Defines a heading of least importance to the document.
+-}
 h6 : List (Attribute msg) -> List (Html msg) -> Html msg
 h6 =
   Elm.Kernel.VirtualDom.node "h6"
