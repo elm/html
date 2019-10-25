@@ -17,6 +17,7 @@ module Html.Attributes exposing
   , accesskey, contenteditable, contextmenu, dir, draggable, dropzone
   , itemprop, lang, spellcheck, tabindex
   , cite, datetime, pubdate, manifest
+  , role
   )
 
 {-| Helper functions for HTML attributes. They are organized roughly by
@@ -73,6 +74,9 @@ Attributes that can be attached to any HTML tag but are less commonly used.
 
 # Miscellaneous
 @docs cite, datetime, pubdate, manifest
+
+# Accessibility
+@docs role
 
 -}
 
@@ -899,6 +903,14 @@ scope =
 manifest : String -> Attribute msg
 manifest =
   Elm.Kernel.VirtualDom.attribute "manifest"
+
+
+-- ACCESSIBILITY
+
+
+role : String -> Attribute msg
+role value =
+  stringProperty "role" value
 
 
 {-- TODO: maybe reintroduce once there's a better way to disambiguate imports
