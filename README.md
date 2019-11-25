@@ -32,7 +32,7 @@ If you call `view 42` you get something like this:
 </div>
 ```
 
-This snippet comes from a complete example. You can play with it online [here](https://elm-lang.org/examples/buttons) and read how it works [here](https://guide.elm-lang.org/architecture/user_input/buttons.html).
+This snippet comes from a complete example. You can play with it online [here](https://elm-lang.org/examples/buttons) and read how it works [here](https://guide.elm-lang.org/architecture/buttons.html).
 
 You can play with a bunch of other examples [here](https://elm-lang.org/examples).
 
