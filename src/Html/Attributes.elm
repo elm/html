@@ -265,7 +265,7 @@ draggable =
   Elm.Kernel.VirtualDom.attribute "draggable"
 
 
-{-| Indicates that the element accept the dropping of content on it. -}
+{-| Indicates that the element accepts the dropping of content on it. -}
 dropzone : String -> Attribute msg
 dropzone =
   stringProperty "dropzone"
