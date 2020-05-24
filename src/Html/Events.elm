@@ -14,7 +14,7 @@ It is often helpful to create an [Custom Type][] so you can have many different 
 of events as seen in the [TodoMVC][] example.
 
 [Custom Type]: https://guide.elm-lang.org/types/custom_types.html
-[TodoMVC]: https://github.com/evancz/elm-todomvc/blob/master/Todo.elm
+[TodoMVC]: https://github.com/evancz/elm-todomvc/blob/master/src/Main.elm
 
 # Mouse
 @docs onClick, onDoubleClick,
