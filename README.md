@@ -1,4 +1,4 @@
-# HTML
+# HTML in Elm
 
 Quickly render HTML in Elm.
 
