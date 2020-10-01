@@ -1,11 +1,11 @@
 # HTML
 
-Quickly render HTML in Elm.
+ Quickly render HTML in Elm.
 
 
 ## Examples
 
-The HTML part of an Elm program looks something like this:
+ The HTML part of an Elm program looks something like this:
 
 ```elm
 import Html exposing (Html, button, div, text)
