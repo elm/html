@@ -1,9 +1,9 @@
-# HTML
+# Elm's HTML
 
 Quickly render HTML in Elm.
 
 
-## Examples
+## Example
 
 The HTML part of an Elm program looks something like this:
 
