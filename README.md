@@ -34,7 +34,7 @@ If you call `view 42` you get something like this:
 
 This snippet comes from a complete example. You can play with it online [here](https://elm-lang.org/examples/buttons) and read how it works [here](https://guide.elm-lang.org/architecture/user_input/buttons.html).
 
-You can play with a bunch of other examples [here](https://elm-lang.org/examples).
+You can play and program with a bunch of other examples [here](https://elm-lang.org/examples).
 
 
 ## Learn More
@@ -44,7 +44,7 @@ You can play with a bunch of other examples [here](https://elm-lang.org/examples
 
 ## Implementation
 
-This library is backed by [elm/virtual-dom](https://package.elm-lang.org/packages/elm/virtual-dom/latest/) which handles the dirty details of rendering DOM nodes quickly. You can read some blog posts about it here:
+This library is backed by [elm/virtual-dom](https://package.elm-lang.org/packages/elm/virtual-dom/latest/) which handles the messy details of rendering DOM nodes quickly. You can read some related blog posts here:
 
   - [Blazing Fast HTML, Round Two](https://elm-lang.org/blog/blazing-fast-html-round-two)
   - [Blazing Fast HTML](https://elm-lang.org/blog/blazing-fast-html)
