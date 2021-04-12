@@ -11,7 +11,7 @@ module Html.Attributes exposing
   , ismap, usemap, shape, coords
   , src, height, width, alt
   , autoplay, controls, loop, preload, poster, default, kind, srclang
-  , sandbox, srcdoc
+  , sandbox, srcdoc, muted
   , reversed, start
   , align, colspan, rowspan, headers, scope
   , accesskey, contenteditable, contextmenu, dir, draggable, dropzone
@@ -358,6 +358,12 @@ loop : Bool -> Attribute msg
 loop =
   boolProperty "loop"
 
+{-| Indicates whether the browser should play the video muted. Required for `sutoplay`
+in some modern web browsers
+-}
+muted : Bool -> Attribute msg
+muted =
+    boolProperty "muted"
 
 {-| Control how much of an `audio` or `video` resource should be preloaded. -}
 preload : String -> Attribute msg
