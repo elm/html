@@ -358,7 +358,7 @@ loop : Bool -> Attribute msg
 loop =
   boolProperty "loop"
 
-{-| Indicates whether the browser should play the video muted. Required for `sutoplay`
+{-| Indicates whether the browser should play the video muted. Required for `autoplay`
 in some modern web browsers
 -}
 muted : Bool -> Attribute msg
