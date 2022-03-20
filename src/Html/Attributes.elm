@@ -844,7 +844,7 @@ pubdate =
 
 
 {-| Indicates whether an ordered list `ol` should be displayed in a descending
-order instead of a ascending.
+order instead of ascending.
 -}
 reversed : Bool -> Attribute msg
 reversed =
