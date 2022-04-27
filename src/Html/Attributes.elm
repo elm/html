@@ -302,7 +302,7 @@ tabindex n =
 
 
 {-| The URL of the embeddable content. For `audio`, `embed`, `iframe`, `img`,
-`input`, `script`, `source`, `track`, and `video`.
+`input`, `source`, `track`, and `video`.
 -}
 src : String -> Attribute msg
 src url =
@@ -426,7 +426,7 @@ srcdoc =
 
 
 {-| Defines the type of a `button`, `checkbox`, `input`, `embed`, `menu`,
-`object`, `script`, `source`, or `style`.
+`object`, `source`, or `style`.
 -}
 type_ : String -> Attribute msg
 type_ =
