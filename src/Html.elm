@@ -5,7 +5,7 @@ module Html exposing
   , div, p, hr, pre, blockquote
   , span, a, code, em, strong, i, b, u, sub, sup, br
   , ol, ul, li, dl, dt, dd
-  , img, iframe, canvas, math
+  , img, picture, iframe, canvas, math
   , form, input, textarea, button, select, option
   , section, nav, article, aside, header, footer, address, main_
   , figure, figcaption
@@ -40,7 +40,7 @@ expect to use frequently will be closer to the top.
 @docs ol, ul, li, dl, dt, dd
 
 ## Embedded Content
-@docs img, iframe, canvas, math
+@docs img, picture, iframe, canvas, math
 
 ## Inputs
 @docs form, input, textarea, button, select, option
@@ -590,6 +590,10 @@ img : List (Attribute msg) -> List (Html msg) -> Html msg
 img =
   Elm.Kernel.VirtualDom.node "img"
 
+{-| Represents an image using one of many possible sources -}
+picture : List (Attribute msg) -> List (Html msg) -> Html msg
+picture =
+  Elm.Kernel.VirtualDom.node "picture"
 
 {-| Embedded an HTML document. -}
 iframe : List (Attribute msg) -> List (Html msg) -> Html msg
