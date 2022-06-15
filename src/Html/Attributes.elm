@@ -10,7 +10,7 @@ module Html.Attributes exposing
   , cols, rows, wrap
   , href, target, download, hreflang, media, ping, rel
   , ismap, usemap, shape, coords
-  , src, srcset, height, width, alt
+  , src, srcset, height, width, sizes, alt
   , autoplay, controls, loop, preload, poster, default, kind, srclang
   , sandbox, srcdoc
   , reversed, start
@@ -355,6 +355,11 @@ width : Int -> Attribute msg
 width n =
   Elm.Kernel.VirtualDom.attribute "width" (String.fromInt n)
 
+{-| Declare the final rendered sizes of a picture `source` for a set of media queries
+-}
+sizes : String -> Attribute msg
+sizes =
+  stringProperty "sizes"
 
 {-| Alternative text in case an image can't be displayed. Works with `img`,
 `area`, and `input`.
