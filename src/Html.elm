@@ -758,7 +758,10 @@ input =
   Elm.Kernel.VirtualDom.node "input"
 
 
-{-| Represents a button. -}
+{-| Represents a button. By default this is an HTML input element with type
+'submit' and will thus submit enclosing form. To prevent this, the attribute
+`type_ "button"` can be used.
+-}
 button : List (Attribute msg) -> List (Html msg) -> Html msg
 button =
   Elm.Kernel.VirtualDom.node "button"
