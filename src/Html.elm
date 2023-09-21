@@ -17,6 +17,7 @@ module Html exposing
   , small, cite, dfn, abbr, time, var, samp, kbd, s, q
   , mark, ruby, rt, rp, bdi, bdo, wbr
   , details, summary, menuitem, menu
+  , dialog
   )
 
 {-| This file is organized roughly in order of popularity. The tags which you'd
@@ -843,3 +844,8 @@ menu : List (Attribute msg) -> List (Html msg) -> Html msg
 menu =
   Elm.Kernel.VirtualDom.node "menu"
 
+
+{-| Represents a dialog that can be shown to the user. -}
+dialog : List (Attribute msg) -> List (Html msg) -> Html msg
+dialog =
+  Elm.Kernel.VirtualDom.node "dialog"

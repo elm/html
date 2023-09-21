@@ -17,6 +17,7 @@ module Html.Attributes exposing
   , accesskey, contenteditable, contextmenu, dir, draggable, dropzone
   , itemprop, lang, spellcheck, tabindex
   , cite, datetime, pubdate, manifest
+  , open
   )
 
 {-| Helper functions for HTML attributes. They are organized roughly by
@@ -899,6 +900,12 @@ scope =
 manifest : String -> Attribute msg
 manifest =
   Elm.Kernel.VirtualDom.attribute "manifest"
+
+
+{-| Indicates whether a `dialog` element is visible or not. -}
+open : Bool -> Attribute msg
+open =
+  boolProperty "open"
 
 
 {-- TODO: maybe reintroduce once there's a better way to disambiguate imports
