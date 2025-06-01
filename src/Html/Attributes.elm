@@ -250,13 +250,13 @@ accesskey char =
 
 {-| Indicates whether the element's content is editable.
 
-Note: These days, the autocomplete attribute can take more values than a boolean, like "inherit" and "plaintext-only". You can set those values like this:
+Note: These days, the contenteditable attribute can take more values than a boolean, like "inherit" and "plaintext-only". You can set those values like this:
 
     attribute "contenteditable" "inherit"
 -}
 contenteditable : Bool -> Attribute msg
 contenteditable bool =
-  -- Note: `node.contentEditable = 'bad'` thrown an error!
+  -- Note: `node.contentEditable = 'bad'` throws an error!
   Elm.Kernel.VirtualDom.attribute "contenteditable" (if bool then "true" else "false")
 
 
