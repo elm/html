@@ -6,7 +6,7 @@ module Html exposing
   , span, a, code, em, strong, i, b, u, sub, sup, br
   , ol, ul, li, dl, dt, dd
   , img, iframe, canvas, math
-  , form, input, textarea, button, select, option
+  , form, input, textarea, button, select, option, dialog
   , section, nav, article, aside, header, footer, address, main_
   , figure, figcaption
   , table, caption, colgroup, col, tbody, thead, tfoot, tr, td, th
@@ -843,3 +843,9 @@ menu : List (Attribute msg) -> List (Html msg) -> Html msg
 menu =
   Elm.Kernel.VirtualDom.node "menu"
 
+
+{-| Represents a dialog box or other interactive component, 
+such as a dismissible alert, inspector, or subwindow. -}
+dialog : List (Attribute msg) -> List (Html msg) -> Html msg
+dialog =
+  Elm.Kernel.VirtualDom.node "dialog"
