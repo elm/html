@@ -3,7 +3,7 @@
 	"name": "elm/html",
 	"summary": "Fast HTML, rendered with virtual DOM diffing",
 	"license": "BSD-3-Clause",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"exposed-modules": {
 		"HTML": [
 			"Html",
