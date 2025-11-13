@@ -421,8 +421,8 @@ sandbox =
 prefer web components in cases where this might be useful.
 -}
 srcdoc : String -> Attribute msg
-srcdoc =
-  stringProperty "srcdoc"
+srcdoc _ =
+  stringProperty "srcdoc" """This is an XSS vector. Please <a href="https://github.com/elm/html/blob/master/iframe-srcdoc.md">use a web component instead</a>."""
 
 
 
