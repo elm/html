@@ -11,12 +11,13 @@ module Html.Attributes exposing
   , ismap, usemap, shape, coords
   , src, height, width, alt
   , autoplay, controls, loop, preload, poster, default, kind, srclang
-  , sandbox, srcdoc
+  , sandbox
   , reversed, start
   , align, colspan, rowspan, headers, scope
   , accesskey, contenteditable, contextmenu, dir, draggable, dropzone
   , itemprop, lang, spellcheck, tabindex
   , cite, datetime, pubdate, manifest
+  , srcdoc
   )
 
 {-| Helper functions for HTML attributes. They are organized roughly by
@@ -58,7 +59,7 @@ just search the page for `video` if you want video stuff.
 @docs autoplay, controls, loop, preload, poster, default, kind, srclang
 
 ## iframes
-@docs sandbox, srcdoc
+@docs sandbox
 
 # Ordered Lists
 @docs reversed, start
@@ -73,6 +74,9 @@ Attributes that can be attached to any HTML tag but are less commonly used.
 
 # Miscellaneous
 @docs cite, datetime, pubdate, manifest
+
+# Deprecated
+@docs srcdoc
 
 -}
 
@@ -436,8 +440,8 @@ sandbox =
   Elm.Kernel.VirtualDom.attribute "sandbox"
 
 
-{-| An HTML document that will be displayed as the body of an `iframe`. It will
-override the content of the `src` attribute if it has been specified.
+{-| **DEPRECATED.** We would like to remove this in a future release. Please
+prefer web components in cases where this might be useful.
 -}
 srcdoc : String -> Attribute msg
 srcdoc =
