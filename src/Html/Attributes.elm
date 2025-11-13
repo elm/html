@@ -163,11 +163,22 @@ property =
   VirtualDom.property
 
 
-stringProperty : String -> String -> Attribute msg
-stringProperty key string =
-  Elm.Kernel.VirtualDom.property key (Json.string string)
+{-| This is used for attributes that have a property that:
 
+- Is boolean.
+- Defaults to `false`.
+- Removes the attribute when setting to `false`.
 
+Note:
+
+- Some properties, like `checked`, can be modified by the user.
+- `.setAttribute(property, "false")` does not set the property to `false` – we have to remove the attribute. (Except `spellcheck` which explicitly has a "false" (and "true") value.)
+
+Consider `hidden : Bool -> Attribute msg`. When that `Bool` is `True`, we could implement the function with `attribute "hidden" ""`. (Using the empty string seems to be “canonical”, but any string would make the element hidden.) But what do we do when the `Bool` is `False`? The intention is to make the element _not_ hidden. The only way of doing that is to remove the `hidden` attribute, but we cannot do that with `attribute` – it always results in the attribute being present (we can only choose its value, but no value will result in the element _not_ being hidden). To keep this API, we _have_ to use the `hidden` _property_ instead, which (like mentioned above) automatically removes the attribute when set to `false`.
+
+An alternative would be to have `hidden : Attribute msg` and let users do `if shouldHide then hidden else ???` where `???` would have to be a way to express a no-op `Attribute msg`, or the user has to resort to list manipulation.
+
+-}
 boolProperty : String -> Bool -> Attribute msg
 boolProperty key bool =
   Elm.Kernel.VirtualDom.property key (Json.bool bool)
@@ -208,7 +219,7 @@ you will get both classes!
 -}
 class : String -> Attribute msg
 class =
-  stringProperty "className"
+  Elm.Kernel.VirtualDom.attribute "class"
 
 
 {-| Indicates the relevance of an element. -}
@@ -222,13 +233,13 @@ attribute must be unique.
 -}
 id : String -> Attribute msg
 id =
-  stringProperty "id"
+  Elm.Kernel.VirtualDom.attribute "id"
 
 
 {-| Text to be displayed in a tooltip when hovering over the element. -}
 title : String -> Attribute msg
 title =
-  stringProperty "title"
+  Elm.Kernel.VirtualDom.attribute "title"
 
 
 
@@ -238,13 +249,19 @@ title =
 {-| Defines a keyboard shortcut to activate or add focus to the element. -}
 accesskey : Char -> Attribute msg
 accesskey char =
-  stringProperty "accessKey" (String.fromChar char)
+  Elm.Kernel.VirtualDom.attribute "accesskey" (String.fromChar char)
 
 
-{-| Indicates whether the element's content is editable. -}
+{-| Indicates whether the element's content is editable.
+
+Note: These days, the contenteditable attribute can take more values than a boolean, like "inherit" and "plaintext-only". You can set those values like this:
+
+    attribute "contenteditable" "inherit"
+-}
 contenteditable : Bool -> Attribute msg
-contenteditable =
-  boolProperty "contentEditable"
+contenteditable bool =
+  -- Note: `node.contentEditable = 'bad'` throws an error!
+  Elm.Kernel.VirtualDom.attribute "contenteditable" (if bool then "true" else "false")
 
 
 {-| Defines the ID of a `menu` element which will serve as the element's
@@ -260,7 +277,7 @@ contextmenu =
 -}
 dir : String -> Attribute msg
 dir =
-  stringProperty "dir"
+  Elm.Kernel.VirtualDom.attribute "dir"
 
 
 {-| Defines whether the element can be dragged. -}
@@ -269,10 +286,13 @@ draggable =
   Elm.Kernel.VirtualDom.attribute "draggable"
 
 
-{-| Indicates that the element accept the dropping of content on it. -}
+{-| Indicates that the element accept the dropping of content on it.
+
+Note: This attribute or property seems to no longer exist.
+-}
 dropzone : String -> Attribute msg
 dropzone =
-  stringProperty "dropzone"
+  Elm.Kernel.VirtualDom.attribute "dropzone"
 
 
 {-|-}
@@ -284,13 +304,16 @@ itemprop =
 {-| Defines the language used in the element. -}
 lang : String -> Attribute msg
 lang =
-  stringProperty "lang"
+  Elm.Kernel.VirtualDom.attribute "lang"
 
 
 {-| Indicates whether spell checking is allowed for the element. -}
 spellcheck : Bool -> Attribute msg
-spellcheck =
-  boolProperty "spellcheck"
+spellcheck bool =
+  -- Note: The spellcheck _property_ defaults to `true`, unlike other boolean properties.
+  -- Setting it back to the default value does _not_ remove the attribute.
+  -- Because of this, we set it using an attribute instead.
+  Elm.Kernel.VirtualDom.attribute "spellcheck" (if bool then "true" else "false")
 
 
 {-| Overrides the browser's default tab order and follows the one specified
@@ -310,7 +333,7 @@ tabindex n =
 -}
 src : String -> Attribute msg
 src url =
-  stringProperty "src" (Elm.Kernel.VirtualDom.noJavaScriptOrHtmlUri url)
+  Elm.Kernel.VirtualDom.attribute "src" (Elm.Kernel.VirtualDom.noJavaScriptOrHtmlUri url)
 
 
 {-| Declare the height of a `canvas`, `embed`, `iframe`, `img`, `input`,
@@ -334,7 +357,7 @@ width n =
 -}
 alt : String -> Attribute msg
 alt =
-  stringProperty "alt"
+  Elm.Kernel.VirtualDom.attribute "alt"
 
 
 
@@ -366,7 +389,7 @@ loop =
 {-| Control how much of an `audio` or `video` resource should be preloaded. -}
 preload : String -> Attribute msg
 preload =
-  stringProperty "preload"
+  Elm.Kernel.VirtualDom.attribute "preload"
 
 
 {-| A URL indicating a poster frame to show until the user plays or seeks the
@@ -374,7 +397,7 @@ preload =
 -}
 poster : String -> Attribute msg
 poster =
-  stringProperty "poster"
+  Elm.Kernel.VirtualDom.attribute "poster"
 
 
 {-| Indicates that the `track` should be enabled unless the user's preferences
@@ -388,21 +411,21 @@ default =
 {-| Specifies the kind of text `track`. -}
 kind : String -> Attribute msg
 kind =
-  stringProperty "kind"
+  Elm.Kernel.VirtualDom.attribute "kind"
 
 
 {-- TODO: maybe reintroduce once there's a better way to disambiguate imports
 {-| Specifies a user-readable title of the text `track`. -}
 label : String -> Attribute msg
 label =
-  stringProperty "label"
+  Elm.Kernel.VirtualDom.attribute "label"
 --}
 
 {-| A two letter language code indicating the language of the `track` text data.
 -}
 srclang : String -> Attribute msg
 srclang =
-  stringProperty "srclang"
+  Elm.Kernel.VirtualDom.attribute "srclang"
 
 
 
@@ -414,7 +437,7 @@ srclang =
 -}
 sandbox : String -> Attribute msg
 sandbox =
-  stringProperty "sandbox"
+  Elm.Kernel.VirtualDom.attribute "sandbox"
 
 
 {-| **DEPRECATED.** We would like to remove this in a future release. Please
@@ -422,7 +445,7 @@ prefer web components in cases where this might be useful.
 -}
 srcdoc : String -> Attribute msg
 srcdoc =
-  stringProperty "srcdoc"
+  Elm.Kernel.VirtualDom.attribute "srcdoc"
 
 
 
@@ -434,15 +457,19 @@ srcdoc =
 -}
 type_ : String -> Attribute msg
 type_ =
-  stringProperty "type"
+  Elm.Kernel.VirtualDom.attribute "type"
 
 
 {-| Defines a default value which will be displayed in a `button`, `option`,
 `input`, `li`, `meter`, `progress`, or `param`.
 -}
 value : String -> Attribute msg
-value =
-  stringProperty "value"
+value string =
+  -- Note: `.value` has no corresponding attribute, so we have to set it
+  -- using a property. It can also be modified by the user by typing in inputs.
+  -- Properties are diffed against the actual DOM, not the virtual DOM, so
+  -- this ensures that the DOM is up-to-date with the model.
+  Elm.Kernel.VirtualDom.property "value" (Json.string string)
 
 
 {-| Indicates whether an `input` of type checkbox is checked. -}
@@ -456,7 +483,7 @@ checked =
 -}
 placeholder : String -> Attribute msg
 placeholder =
-  stringProperty "placeholder"
+  Elm.Kernel.VirtualDom.attribute "placeholder"
 
 
 {-| Defines which `option` will be selected on page load. -}
@@ -470,33 +497,37 @@ selected =
 
 
 {-| List of types the server accepts, typically a file type.
-For `form` and `input`.
+For `input`.
 -}
 accept : String -> Attribute msg
 accept =
-  stringProperty "accept"
+  Elm.Kernel.VirtualDom.attribute "accept"
 
 
 {-| List of supported charsets in a `form`.
 -}
 acceptCharset : String -> Attribute msg
 acceptCharset =
-  stringProperty "acceptCharset"
+  Elm.Kernel.VirtualDom.attribute "accept-charset"
 
 
 {-| The URI of a program that processes the information submitted via a `form`.
 -}
 action : String -> Attribute msg
 action uri =
-  stringProperty "action" (Elm.Kernel.VirtualDom.noJavaScriptUri uri)
+  Elm.Kernel.VirtualDom.attribute "action" (Elm.Kernel.VirtualDom.noJavaScriptUri uri)
 
 
 {-| Indicates whether a `form` or an `input` can have their values automatically
 completed by the browser.
+
+Note: These days, the autocomplete attribute can take more values than a boolean. For example, you can use this to autocomplete a street address:
+
+    attribute "autocomplete" "street-address"
 -}
 autocomplete : Bool -> Attribute msg
 autocomplete bool =
-  stringProperty "autocomplete" (if bool then "on" else "off")
+  Elm.Kernel.VirtualDom.attribute "autocomplete" (if bool then "on" else "off")
 
 
 {-| The element should be automatically focused after the page loaded.
@@ -521,7 +552,7 @@ text/plain.
 -}
 enctype : String -> Attribute msg
 enctype =
-  stringProperty "enctype"
+  Elm.Kernel.VirtualDom.attribute "enctype"
 
 
 {-| Associates an `input` with a `datalist` tag. The datalist gives some
@@ -555,7 +586,7 @@ maxlength n =
 -}
 method : String -> Attribute msg
 method =
-  stringProperty "method"
+  Elm.Kernel.VirtualDom.attribute "method"
 
 
 {-| Indicates whether multiple values can be entered in an `input` of type
@@ -572,7 +603,7 @@ in form submits. For `button`, `form`, `fieldset`, `iframe`, `input`,
 -}
 name : String -> Attribute msg
 name =
-  stringProperty "name"
+  Elm.Kernel.VirtualDom.attribute "name"
 
 
 {-| This attribute indicates that a `form` shouldn't be validated when
@@ -588,7 +619,7 @@ against.
 -}
 pattern : String -> Attribute msg
 pattern =
-  stringProperty "pattern"
+  Elm.Kernel.VirtualDom.attribute "pattern"
 
 
 {-| Indicates whether an `input` or `textarea` can be edited. -}
@@ -619,7 +650,7 @@ for an `output`.
 -}
 for : String -> Attribute msg
 for =
-  stringProperty "htmlFor"
+  Elm.Kernel.VirtualDom.attribute "for"
 
 
 {-| Indicates the element ID of the `form` that owns this particular `button`,
@@ -640,7 +671,7 @@ date, the max value must be a number or date. For `input`, `meter`, and `progres
 -}
 max : String -> Attribute msg
 max =
-  stringProperty "max"
+  Elm.Kernel.VirtualDom.attribute "max"
 
 
 {-| Indicates the minimum value allowed. When using an input of type number or
@@ -648,7 +679,7 @@ date, the min value must be a number or date. For `input` and `meter`.
 -}
 min : String -> Attribute msg
 min =
-  stringProperty "min"
+  Elm.Kernel.VirtualDom.attribute "min"
 
 
 {-| Add a step size to an `input`. Use `step "any"` to allow any floating-point
@@ -656,7 +687,7 @@ number to be used in the input.
 -}
 step : String -> Attribute msg
 step n =
-  stringProperty "step" n
+  Elm.Kernel.VirtualDom.attribute "step" n
 
 
 --------------------------
@@ -679,7 +710,7 @@ values are "hard" and "soft".
 -}
 wrap : String -> Attribute msg
 wrap =
-  stringProperty "wrap"
+  Elm.Kernel.VirtualDom.attribute "wrap"
 
 
 
@@ -701,7 +732,7 @@ E.g. `"#planet-map"`.
 -}
 usemap : String -> Attribute msg
 usemap =
-  stringProperty "useMap"
+  Elm.Kernel.VirtualDom.attribute "usemap"
 
 
 {-| Declare the shape of the clickable area in an `a` or `area`. Valid values
@@ -710,7 +741,7 @@ include: default, rect, circle, poly. This attribute can be paired with
 -}
 shape : String -> Attribute msg
 shape =
-  stringProperty "shape"
+  Elm.Kernel.VirtualDom.attribute "shape"
 
 
 {-| A set of values specifying the coordinates of the hot-spot region in an
@@ -718,7 +749,7 @@ shape =
 -}
 coords : String -> Attribute msg
 coords =
-  stringProperty "coords"
+  Elm.Kernel.VirtualDom.attribute "coords"
 
 
 
@@ -731,7 +762,7 @@ coords =
 -}
 align : String -> Attribute msg
 align =
-  stringProperty "align"
+  Elm.Kernel.VirtualDom.attribute "align"
 
 
 {-| Contains a URI which points to the source of the quote or change in a
@@ -739,7 +770,7 @@ align =
 -}
 cite : String -> Attribute msg
 cite =
-  stringProperty "cite"
+  Elm.Kernel.VirtualDom.attribute "cite"
 
 
 
@@ -750,7 +781,7 @@ cite =
 {-| The URL of a linked resource, such as `a`, `area`, `base`, or `link`. -}
 href : String -> Attribute msg
 href url =
-  stringProperty "href" (Elm.Kernel.VirtualDom.noJavaScriptUri url)
+  Elm.Kernel.VirtualDom.attribute "href" (Elm.Kernel.VirtualDom.noJavaScriptUri url)
 
 
 {-| Specify where the results of clicking an `a`, `area`, `base`, or `form`
@@ -765,7 +796,7 @@ You can also give the name of any `frame` you have created.
 -}
 target : String -> Attribute msg
 target =
-  stringProperty "target"
+  Elm.Kernel.VirtualDom.attribute "target"
 
 
 {-| Indicates that clicking an `a` and `area` will download the resource
@@ -780,23 +811,14 @@ The empty `String` says to just name it whatever it was called on the server.
 -}
 download : String -> Attribute msg
 download fileName =
-  stringProperty "download" fileName
-
-
-{-| Indicates that clicking an `a` and `area` will download the resource
-directly, and that the downloaded resource with have the given filename.
-So `downloadAs "hats.json"` means the person gets a file named `hats.json`.
--}
-downloadAs : String -> Attribute msg
-downloadAs =
-  stringProperty "download"
+  Elm.Kernel.VirtualDom.attribute "download" fileName
 
 
 {-| Two-letter language code of the linked resource of an `a`, `area`, or `link`.
 -}
 hreflang : String -> Attribute msg
 hreflang =
-  stringProperty "hreflang"
+  Elm.Kernel.VirtualDom.attribute "hreflang"
 
 
 {-| Specifies a hint of the target media of a `a`, `area`, `link`, `source`,
@@ -812,7 +834,7 @@ media =
 -}
 ping : String -> Attribute msg
 ping =
-  stringProperty "ping"
+  Elm.Kernel.VirtualDom.attribute "ping"
 
 
 {-| Specifies the relationship of the target object to the link object.
@@ -860,7 +882,7 @@ besides 1.
 -}
 start : Int -> Attribute msg
 start n =
-  stringProperty "start" (String.fromInt n)
+  Elm.Kernel.VirtualDom.attribute "start" (String.fromInt n)
 
 
 
@@ -880,7 +902,7 @@ headers for this cell. For `td` and `th`.
 -}
 headers : String -> Attribute msg
 headers =
-  stringProperty "headers"
+  Elm.Kernel.VirtualDom.attribute "headers"
 
 
 {-| Defines the number of rows a table cell should span over.
@@ -896,7 +918,7 @@ colgroup, rowgroup.
 -}
 scope : String -> Attribute msg
 scope =
-  stringProperty "scope"
+  Elm.Kernel.VirtualDom.attribute "scope"
 
 
 {-| Specifies the URL of the cache manifest for an `html` tag. -}
@@ -909,5 +931,5 @@ manifest =
 {-| The number of columns a `col` or `colgroup` should span. -}
 span : Int -> Attribute msg
 span n =
-    stringProperty "span" (String.fromInt n)
+    Elm.Kernel.VirtualDom.attribute "span" (String.fromInt n)
 --}
