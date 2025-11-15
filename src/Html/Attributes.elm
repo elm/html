@@ -1,5 +1,6 @@
 module Html.Attributes exposing
-  ( style, property, attribute, map
+  ( SrcsetImageSizeDescriptor
+  , style, property, attribute, map
   , class, classList, id, title, hidden
   , type_, value, checked, placeholder, selected
   , accept, acceptCharset, action, autocomplete, autofocus
@@ -9,7 +10,7 @@ module Html.Attributes exposing
   , cols, rows, wrap
   , href, target, download, hreflang, media, ping, rel
   , ismap, usemap, shape, coords
-  , src, height, width, alt
+  , src, srcset, height, width, sizes, alt
   , autoplay, controls, loop, preload, poster, default, kind, srclang
   , sandbox
   , reversed, start
@@ -53,7 +54,7 @@ just search the page for `video` if you want video stuff.
 
 
 # Embedded Content
-@docs src, height, width, alt
+@docs src, srcset, height, width, alt
 
 ## Audio and Video
 @docs autoplay, controls, loop, preload, poster, default, kind, srclang
@@ -313,6 +314,36 @@ src url =
   stringProperty "src" (Elm.Kernel.VirtualDom.noJavaScriptOrHtmlUri url)
 
 
+{-| Image size descriptor for `srcset` source
+-}
+type SrcsetImageSizeDescriptor
+  = PixelWidth Int
+  | PixelDensity Number
+
+
+{-| Declare the source set of a `source` within a `picture`
+-}
+srcset : List ( String, Maybe SrcsetImageSizeDescriptor ) -> Attribute msg
+srcset sources =
+  List.map
+    (\( src, size ) ->
+      Elm.Kernel.VirtualDom.noJavaScriptOrHtmlUri src
+        ++ (case size of
+              Just (Width px) ->
+                " " ++ String.fromInt px ++ "w"
+
+              Just (PixelDensity d) ->
+                " " ++ String.fromFloat d ++ "x"
+
+              Nothing ->
+                ""
+            )
+    )
+    sources
+    |> String.join ", "
+    |> stringProperty "srcset"
+
+
 {-| Declare the height of a `canvas`, `embed`, `iframe`, `img`, `input`,
 `object`, or `video`.
 -}
@@ -328,6 +359,11 @@ width : Int -> Attribute msg
 width n =
   Elm.Kernel.VirtualDom.attribute "width" (String.fromInt n)
 
+{-| Declare the final rendered sizes of a picture `source` for a set of media queries
+-}
+sizes : String -> Attribute msg
+sizes =
+  stringProperty "sizes"
 
 {-| Alternative text in case an image can't be displayed. Works with `img`,
 `area`, and `input`.
